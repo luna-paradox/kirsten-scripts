@@ -30,7 +30,7 @@ let craft_amount_if_full = (base_res_id, craft_res_id, amount, log = true) => {
     }
 }
 
-let observe_the_sky = () => {
+let observe_the_sky = (log = true) => {
     let button = game.calendar.observeBtn
     if (button) {
         if (log || debug) console.log('Lookin at the sky')
@@ -67,11 +67,11 @@ let auto_pray = (ratio, log = true) => {
 
 
 var flags = {
-    catpower: 1, catnip: 1,
-    wood: 1, minerals: 1, iron: 1,
-    coal: 1, oil: 1, unobtainium: 1,
-    furs: 1, culture: 1, science: 1, blueprint: 1,
-    praise: 1, lunar: 0,
+    catpower: 0, catnip: 0,
+    wood: 0, minerals: 0, iron: 0,
+    coal: 0, oil: 0, unobtainium: 0,
+    furs: 0, culture: 0, science: 0, blueprint: 0,
+    praise: 0, lunar: 0,
     sky: 1,
 }
 
