@@ -1,5 +1,40 @@
-//$ ---- AUTOMATION SCRIPT ----
 
+//$ ---- PERSISTENCE THROUGH COOKIE MANAGEMENT ----
+
+let COOKIE_KEY_AUTOMATION_FLAGS = 'automation-flags'
+
+// Update cookie with all the Flags
+var upgrade_flag_cookie = (key, is_checked) => {
+    let flags_cookie = get_cookie(COOKIE_KEY_AUTOMATION_FLAGS)
+    let flags_dict = flags_cookie ? JSON.parse(flags_cookie) : {}
+    flags_dict[key] = is_checked ? 1 : 0
+    set_cookie(COOKIE_KEY_AUTOMATION_FLAGS, JSON.stringify(flags_dict), 400)
+}
+
+var flags = {}
+
+// Load cookie with all the Flags into the flags control variable
+// If no cookie exists, is created with all values as 0
+var load_flags = () => {
+    let flags_cookie = get_cookie(COOKIE_KEY_AUTOMATION_FLAGS)
+
+    if (flags_cookie) {
+        flags = JSON.parse(flags_cookie)
+    } else {
+        flags = {
+            catpower: 0,    catnip: 0,
+            wood: 0,        minerals: 0,    iron: 0,
+            coal: 0,        oil: 0,         unobtainium: 0,
+            furs: 0,        culture: 0,     science: 0,         blueprint: 0,
+            sky: 0,         praise: 0,      lunar: 0,
+        }
+        set_cookie(COOKIE_KEY_AUTOMATION_FLAGS, JSON.stringify(flags), 400)
+    }
+} 
+load_flags()
+
+
+//$ ---- AUTOMATION SCRIPT ----
 
 let hunt_on_manpower_full = (fraction, log = true) => {
     let percentage = get_res_percentage('manpower')
@@ -65,25 +100,13 @@ let auto_pray = (ratio, log = true) => {
     }
 }
 
-
-var flags = {
-    catpower: 0, catnip: 0,
-    wood: 0, minerals: 0, iron: 0,
-    coal: 0, oil: 0, unobtainium: 0,
-    furs: 0, culture: 0, science: 0, blueprint: 0,
-    praise: 0, lunar: 0,
-    sky: 1,
-}
-
 var MIN_FUR = 20000
-var MIN_PARCHMENT = 5000
+var MIN_PARCHMENT = 1000
 var MIN_MANUSCRIPT = 2000
 var MIN_COMPENDIUM = 2000
 var MAX_LUNAR_OUTPOST = 2000
 
-
 var main_automation = () => {
-
     //* PRIMARY RESOURCES
     if (flags.catnip)   craft_ratio_if_full('catnip', 'wood', 0.25, false)
     if (flags.wood)     craft_ratio_if_full('wood', 'beam', 0.1, false)
