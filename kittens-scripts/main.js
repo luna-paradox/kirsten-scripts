@@ -1,4 +1,13 @@
+console.log('> Loading main.js script')
+
 let debug = false
+
+// Workshop Marks
+let COOKIE_KEY_IMPORTANT_MARKS = 'upgrade-important-marks'
+let COOKIE_KEY_MID_MARKS = 'upgrade-mid-marks'
+let COOKIE_KEY_NON_IMPORTANT_MARKS = 'upgrade-non-important-marks'
+// Automation
+let COOKIE_KEY_AUTOMATION_FLAGS = 'automation-flags'
 
 //* COOKIE MANAGEMENT
 var set_cookie = (name, value, days) => {
