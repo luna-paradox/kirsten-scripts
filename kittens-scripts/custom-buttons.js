@@ -1,3 +1,6 @@
+console.log('> Loading custom-buttons.js script')
+
+
 var create_catpower_button = () => {
     var new_btn = document.createElement('button')
     new_btn.textContent = 'CATPOWER'

@@ -1,3 +1,4 @@
+console.log('> Loading automation-ui.js script')
 
 //$ ---- UI GENERATION ----
 

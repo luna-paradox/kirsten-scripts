@@ -1,7 +1,6 @@
+console.log('> Loading automation.js script')
 
 //$ ---- PERSISTENCE THROUGH COOKIE MANAGEMENT ----
-
-let COOKIE_KEY_AUTOMATION_FLAGS = 'automation-flags'
 
 // Update cookie with all the Flags
 var upgrade_flag_cookie = (key, is_checked) => {
