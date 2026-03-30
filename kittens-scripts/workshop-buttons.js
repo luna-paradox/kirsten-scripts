@@ -69,7 +69,7 @@ var get_upgrade_marks_data = () => {
 var init_workshop_upgrade_marks = () => {
     console.log('Iinitializing Workshop Upgrade Marks')
     let container = $('.tabInner.Workshop .panelContainer .container')
-    let all_buttons = container.children()
+    let all_buttons = container.children('.btn')
 
     let upgrade_mark_data = get_upgrade_marks_data();
     all_buttons.each(function (idx) {
