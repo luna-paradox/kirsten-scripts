@@ -43,5 +43,7 @@ var import_custom = (settings_string) => {
     set_cookie(COOKIE_KEY_MID_MARKS, c_marks_mid, 400)
     set_cookie(COOKIE_KEY_NON_IMPORTANT_MARKS, c_marks_non_important, 400)
     set_cookie(COOKIE_KEY_AUTOMATION_FLAGS, c_flags, 400)
+    load_flags()
+    update_automation_ui()
     if (debug) console.log('> Settings imported')
 }

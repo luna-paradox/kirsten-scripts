@@ -9,6 +9,7 @@ var create_open_automation_ui_button = () => {
 
     new_button.onclick = () => {
         $('#automation-ui-modal').toggle()
+        update_automation_ui()
     }
     
     return new_button
@@ -35,19 +36,23 @@ var create_automation_ui = () => {
 
     //* ADD ALL FLAGS
     const all_flags_div = document.createElement('div')
+    all_flags_div.id = 'auto-flag-div'
     for (const [key, value] of Object.entries(flags)) {
         
         var flag_div = document.createElement('div')
+        flag_div.id = 'auto-flag-div-' + key
         
         var flag_checkbox = document.createElement('input')
+        $(flag_checkbox).data('flag-id', key)
         flag_checkbox.id = 'auto-flag-' + key
+        flag_checkbox.classList.add('auto-flag-checkbox'); 
         flag_checkbox.type = 'checkbox'
         flag_checkbox.name = key
         flag_checkbox.checked = value
         flag_checkbox.style.accentColor = 'yellow'
 
         $(flag_checkbox).change(function () {
-            upgrade_flag_cookie(key, this.checked)
+            update_flag_cookie(key, this.checked)
             // UPDATE SYSTEM FLAG
             flags[key] = this.checked ? 1 : 0
         });
@@ -68,6 +73,16 @@ var create_automation_ui = () => {
 
     //* RETURN MODAL
     return main_div
+}
+
+var update_automation_ui = () => {
+    const all_checkbox = $('.auto-flag-checkbox')
+
+    for (checkbox of all_checkbox) {
+        let flag_id = $(checkbox).data('flag-id')
+        let flag_state = flags[flag_id]
+        checkbox.checked = flag_state
+    }
 }
 
 //$ ---- INITIALIZATION ----

@@ -3,7 +3,7 @@ console.log('> Loading automation.js script')
 //$ ---- PERSISTENCE THROUGH COOKIE MANAGEMENT ----
 
 // Update cookie with all the Flags
-var upgrade_flag_cookie = (key, is_checked) => {
+var update_flag_cookie = (key, is_checked) => {
     let flags_cookie = get_cookie(COOKIE_KEY_AUTOMATION_FLAGS)
     let flags_dict = flags_cookie ? JSON.parse(flags_cookie) : {}
     flags_dict[key] = is_checked ? 1 : 0
