@@ -72,7 +72,7 @@ let observe_the_sky = (log = true) => {
     }
 }
 
-let control_lunar_outpost = (max_on, min_ratio, max_ratio, log = true) => {
+let control_lunar_outpost = (min_ratio, max_ratio, log = true) => {
     let uranium_ratio = get_res_percentage('uranium')
     let lunar_outpost = game.space.getPlanet('moon').buildings[0]
 
@@ -85,7 +85,7 @@ let control_lunar_outpost = (max_on, min_ratio, max_ratio, log = true) => {
     else {
         if (uranium_ratio >= max_ratio) {
             if (log || debug) console.log('Turning Lunar Outpost [ON]')
-            lunar_outpost.on = max_on;
+            lunar_outpost.on = lunar_outpost.val;
         }
     }
 }
@@ -100,10 +100,9 @@ let auto_pray = (ratio, log = true) => {
 }
 
 var MIN_FUR = 20000
-var MIN_PARCHMENT = 1000
+var MIN_PARCHMENT = 4000
 var MIN_MANUSCRIPT = 2000
 var MIN_COMPENDIUM = 2000
-var MAX_LUNAR_OUTPOST = 2000
 
 var main_automation = () => {
     //* PRIMARY RESOURCES
@@ -141,7 +140,7 @@ var main_automation = () => {
 
     //* OTHER
     if (flags.praise) auto_pray(0.99)
-    if (flags.lunar) control_lunar_outpost(MAX_LUNAR_OUTPOST, 0.5, 0.99)
+    if (flags.lunar) control_lunar_outpost(0.5, 0.99)
     if (flags.sky) observe_the_sky()
 }
 
