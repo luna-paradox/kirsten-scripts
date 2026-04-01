@@ -62,4 +62,10 @@ window.addEventListener('keydown', function(e) {
         game.resPool.addResEvent('iron', 10000000)
         game.resPool.addResEvent('science', 10000000)
     }
+    if (e.ctrlKey && e.code === 'KeyC') {
+        e.preventDefault(); 
+        
+        console.log("Culture Shortcut triggered");
+        game.resPool.addResEvent('culture', 10000000)
+    }
 }, false);

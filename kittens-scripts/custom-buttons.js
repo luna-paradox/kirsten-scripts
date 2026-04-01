@@ -38,6 +38,21 @@ var create_cheat_button = () => {
     return new_btn
 }
 
+
+var create_culture_button = () => {
+    
+    var new_btn = document.createElement('button')
+    new_btn.textContent = 'C'
+    new_btn.id = 'custom-culture'
+    $(new_btn).css('margin-left', '5px')
+
+    new_btn.onclick = () => {
+        game.resPool.addResEvent('culture', 10000000)
+    }
+    
+    return new_btn
+}
+
 var init_custom_buttons = () => {
     var container = $('.right-tab-header')
 
@@ -46,5 +61,8 @@ var init_custom_buttons = () => {
 
     const btn_cheat = create_cheat_button()
     container.append(btn_cheat)
+
+    const btn_culture = create_culture_button()
+    container.append(btn_culture)
 }
 init_custom_buttons()
