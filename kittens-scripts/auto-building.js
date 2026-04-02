@@ -4,8 +4,8 @@ var AUTO_BUILDING_ON = 1
 
 // Define what buildings will be auto-build, ordered by bought priority
 var building_flags = {
-    hut: 1,
-    logHouse: 1,
+    hut: 0,
+    logHouse: 0,
     mansion: 0,
 
     workshop: 1,
@@ -44,7 +44,7 @@ var buy_if_available = (building_id) => {
 // Automation for the Builder Auto-Buyer
 var building_automation = () => {
     if (!AUTO_BUILDING_ON) return
-    
+
     // Loop through the flags and tries to buy it if enabled
     for (const [key, value] of Object.entries(building_flags)) {
         if (value) buy_if_available(key)
