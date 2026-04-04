@@ -2,6 +2,8 @@ console.log('> Loading auto-building.js script')
 
 var AUTO_BUILDING_ON = 1
 
+//$ ---- DATA PERSISNTECE ----
+
 // Define what buildings will be auto-build, ordered by bought priority
 var building_flags = {
     hut: 0,
@@ -29,6 +31,18 @@ var building_flags = {
     aqueduct: 0,
 }
 
+
+var upgrade_auto_building_flag = (building_id, checked) => {
+    building_flags[building_id] = checked
+}
+
+var upgrade_auto_building_on = (new_state) => {
+    AUTO_BUILDING_ON = new_state
+}
+
+
+//$ ---- SERVICES ----
+
 // Buy a Building if available
 var buy_if_available = (building_id) => {
     var button = game.bldTab?.children?.find(btn => btn?.opts?.building == building_id)
@@ -40,6 +54,9 @@ var buy_if_available = (building_id) => {
     console.log(`> Building [${building_id}]`)
     button.buttonContent.click()
 }
+
+
+//$ ---- INITIALIZATION ----
 
 // Automation for the Builder Auto-Buyer
 var building_automation = () => {

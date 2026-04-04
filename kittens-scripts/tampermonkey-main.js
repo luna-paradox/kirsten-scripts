@@ -20,6 +20,7 @@ function load_scripts() {
         'https://cdn.jsdelivr.net/gh/luna-paradox/kirsten-scripts@main/kittens-scripts/automation.js?v=' + Date.now(),
         'https://cdn.jsdelivr.net/gh/luna-paradox/kirsten-scripts@main/kittens-scripts/auto-building.js?v=' + Date.now(),
         'https://cdn.jsdelivr.net/gh/luna-paradox/kirsten-scripts@main/kittens-scripts/automation-ui.js?v=' + Date.now(),
+        'https://cdn.jsdelivr.net/gh/luna-paradox/kirsten-scripts@main/kittens-scripts/auto-building-ui.js?v=' + Date.now(),
         'https://cdn.jsdelivr.net/gh/luna-paradox/kirsten-scripts@main/kittens-scripts/settings-manager.js?v=' + Date.now(),
     ]
 
@@ -31,6 +32,7 @@ function load_scripts() {
         'https://kirsten.luna-paradox.dev/kittens-scripts/automation.js?v=' + Date.now(),
         'https://kirsten.luna-paradox.dev/kittens-scripts/auto-building.js?v=' + Date.now(),
         'https://kirsten.luna-paradox.dev/kittens-scripts/automation-ui.js?v=' + Date.now(),
+        'https://kirsten.luna-paradox.dev/kittens-scripts/auto-building-ui.js?v=' + Date.now(),
         'https://kirsten.luna-paradox.dev/kittens-scripts/settings-manager.js?v=' + Date.now(),
     ]
 
