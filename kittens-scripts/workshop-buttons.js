@@ -5,9 +5,6 @@ console.log('> Loading workshop-buttons.js script')
 // All selected marks are stored as cookies so they can be recovered after
 // after realoading, but it doesn't sync over browsers
 
-//TODO Exporter-importer of marks: I already tested it by hand and it worked,
-// but something a bit more automated would be nice
-
 //* UPGRADE MARKS DATA MANAGEMENT
 // Marks are stored as dictionaries {} with the index of the button on DOM as key
 // and a boolean as value indicating the state of the checkmark input
@@ -60,7 +57,7 @@ var get_upgrade_marks_data = () => {
     };
 }
 
-// INIT BUTTONS
+// ---- INIT BUTTONS ----
 // It needs to be initialized once at the begginging and never again
 // If ran twice in the same session it'll bug lmao
 var init_workshop_upgrade_marks = () => {
@@ -143,7 +140,7 @@ var init_workshop_upgrade_marks = () => {
     });
 }
 
-// SUBSCRIBE BUTTON INITIALIZATION TO WORKSHOP TAB CHANGE
+// ---- SUBSCRIBE BUTTON INITIALIZATION TO WORKSHOP TAB CHANGE ----
 var on_activeTabId_changed = (_current_value, new_value) => {
     if (new_value == 'Workshop') {
         setTimeout(() => init_workshop_upgrade_marks(), 50) // lol, lmao even
