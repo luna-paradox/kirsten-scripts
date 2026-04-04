@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Kittens Game - Workshop Buttons
 // @match        *://kittensgame.com/web/
-// @version      1.0
+// @version      1.1
 // @updateURL    https://cdn.jsdelivr.net/gh/luna-paradox/kirsten-scripts@main/kittens-scripts/tampermonkey-main.js
 // @downloadURL  https://cdn.jsdelivr.net/gh/luna-paradox/kirsten-scripts@main/kittens-scripts/tampermonkey-main.js
 // ==/UserScript==
