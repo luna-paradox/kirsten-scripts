@@ -72,10 +72,10 @@ var subscribe_auto_building_ui = () => {
     game.ui.render = function() {
         old_render.apply(this, arguments);
         
-        // Check if we are actually on the Bonfire tab before injecting
         if (game.ui.activeTabId === 'Bonfire') {
-            init_auto_building_ui(); 
+            init_auto_building_ui()
         }
     };
 }
 subscribe_auto_building_ui()
+init_auto_building_ui()

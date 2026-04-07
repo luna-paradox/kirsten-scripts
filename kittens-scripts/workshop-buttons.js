@@ -61,7 +61,7 @@ var get_upgrade_marks_data = () => {
 // It needs to be initialized once at the begginging and never again
 // If ran twice in the same session it'll bug lmao
 var init_workshop_upgrade_marks = () => {
-    console.log('Iinitializing Workshop Upgrade Marks')
+    if (debug) console.log('Iinitializing Workshop Upgrade Marks')
     let container = $('.tabInner.Workshop .panelContainer .container')
     let all_buttons = container.children('.btn')
 
@@ -80,6 +80,7 @@ var init_workshop_upgrade_marks = () => {
         //$ ---- IMPORTANT MARKS ----
         //* IMPORTANT: NEW CHECKBOX
         let new_important_checkbox = document.createElement('input');
+        new_important_checkbox.classList.add('workshop-button-important-upgrade')
         new_important_checkbox.type = 'checkbox';
         new_important_checkbox.name = 'important-upgrade';
         new_important_checkbox.style.accentColor = 'yellow'
@@ -140,24 +141,15 @@ var init_workshop_upgrade_marks = () => {
     });
 }
 
-// ---- SUBSCRIBE BUTTON INITIALIZATION TO WORKSHOP TAB CHANGE ----
-var on_activeTabId_changed = (_current_value, new_value) => {
-    if (new_value == 'Workshop') {
-        setTimeout(() => init_workshop_upgrade_marks(), 50) // lol, lmao even
-    }
-}
-
-var subscribe_to_workshop_tab = () => {
-    // game.ui.activeTabId -> Holds the Id of the current active Tab
-    let parent_object = game.ui
-    let current_value = parent_object.activeTabId
-
-    Object.defineProperty(parent_object, 'activeTabId', {
-        get: function () { return current_value; },
-        set: function (new_value) {
-            on_activeTabId_changed(current_value, new_value)
-            current_value = new_value
+// ---- SUBSCRIBE INITIALIZATION ----
+var subscribe_workshop_buttons_ui = () => {
+    var old_render = game.ui.render;
+    game.ui.render = function() {
+        old_render.apply(this, arguments);
+        
+        if (game.ui.activeTabId === 'Workshop' && !$('.workshop-button-important-upgrade').length) {
+            init_workshop_upgrade_marks()
         }
-    })
+    };
 }
-subscribe_to_workshop_tab()
+subscribe_workshop_buttons_ui()

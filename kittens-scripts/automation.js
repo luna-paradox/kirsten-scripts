@@ -25,7 +25,7 @@ var load_flags = () => {
             wood: 0,        minerals: 0,    iron: 0,
             coal: 0,        oil: 0,         unobtainium: 0,
             furs: 0,        culture: 0,     science: 0,         blueprint: 0,
-            sky: 0,         praise: 0,      lunar: 0,
+            sky: 0,         praise: 0,      lunar: 0,           uranium: 0,
         }
         set_cookie(COOKIE_KEY_AUTOMATION_FLAGS, JSON.stringify(flags), 400)
     }
@@ -112,13 +112,15 @@ var main_automation = () => {
     if (flags.iron)     craft_ratio_if_full('iron', 'plate', 0.1, false)
     if (flags.coal)     craft_ratio_if_full('coal', 'steel', 0.8, false)
     if (flags.oil)      craft_amount_if_full('oil', 'kerosene', 1, false)
+    if (flags.uranium)  craft_amount_if_full('uranium', 'thorium', 1, false)
         
+    //* ELUDIUM
     let alloy = game.resPool.get('alloy').value
-    if (flags.unobtainium && alloy > 2500)  
-        craft_amount_if_full('unobtainium', 'eludium', 1, true)
+    let unobtainium = game.resPool.get('unobtainium').value
+    if (flags.unobtainium && alloy > 2500 && unobtainium > 1001)
+        game.craft('eludium', 1)
 
     //* SCIENCE
-    // if (flags.catpower) hunt_on_manpower_full(10)
     if (flags.catpower) hunt_on_manpower_full(1)
     
     let furs = game.resPool.get('furs').value

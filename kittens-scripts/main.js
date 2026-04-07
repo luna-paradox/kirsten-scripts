@@ -68,4 +68,20 @@ window.addEventListener('keydown', function(e) {
         console.log("Culture Shortcut triggered");
         game.resPool.addResEvent('culture', 10000000)
     }
+    if (e.shiftKey && e.code === 'KeyC') {
+        e.preventDefault(); 
+        
+        console.log("Catpower Shortcut triggered");
+        let resource = game.resPool.get('manpower')
+        let max = resource.maxValue
+        let target = max * 0.8
+
+        let current = resource.value
+        let delta = target - current
+
+        game.resPool.addResEvent('manpower', delta)
+    }
+    if (e.shiftKey && e.code === 'KeyX') {
+        game.craftAll('steel')
+    }
 }, false);
