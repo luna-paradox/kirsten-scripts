@@ -46,8 +46,19 @@ var craft_amount = (resource_id, amount_to_craft, log = true) => {
     game.craft(resource_id, amount_to_craft)
 }
 
+var craft_ratio = (resource_id, ratio) => {
+    var all_craftable = game.workshop.getCraftAllCount(resource_id)
+    var ratio_count = Math.floor(all_craftable * ratio)
+
+    game.craft(resource_id, ratio_count)
+}
+
 var cheat_amount = (resource_id, amount) => {
     game.resPool.addResEvent(resource_id, amount)
+}
+
+var is_res_full = (resource_id) => {
+    return get_res_percentage(resource_id) >= 1
 }
 
 
@@ -56,7 +67,7 @@ window.addEventListener('keydown', function(e) {
     if (e.ctrlKey && e.code === 'Space') {
         e.preventDefault(); 
         
-        console.log("Cheat Shortcut triggered");
+        console.log('Cheat Shortcut triggered');
         game.resPool.addResEvent('wood', 10000000)
         game.resPool.addResEvent('minerals', 10000000)
         game.resPool.addResEvent('iron', 10000000)
@@ -65,13 +76,13 @@ window.addEventListener('keydown', function(e) {
     if (e.ctrlKey && e.code === 'KeyC') {
         e.preventDefault(); 
         
-        console.log("Culture Shortcut triggered");
+        console.log('Culture Shortcut triggered');
         game.resPool.addResEvent('culture', 10000000)
     }
     if (e.shiftKey && e.code === 'KeyC') {
         e.preventDefault(); 
         
-        console.log("Catpower Shortcut triggered");
+        console.log('Catpower Shortcut triggered');
         let resource = game.resPool.get('manpower')
         let max = resource.maxValue
         let target = max * 0.8
@@ -83,5 +94,10 @@ window.addEventListener('keydown', function(e) {
     }
     if (e.shiftKey && e.code === 'KeyX') {
         game.craftAll('steel')
+    }
+    if (e.shiftKey && e.code === 'KeyZ') {
+        console.log('Trading with Zebras');
+        let zebras = game.diplomacy.races.find(x => x.name == 'zebras')
+        game.diplomacy.tradeMultiple(zebras, 2)
     }
 }, false);

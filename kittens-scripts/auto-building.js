@@ -69,4 +69,4 @@ var building_automation = () => {
 }
 
 // Builder Auto-Buyer Automation
-var automationLoop = setInterval(() => building_automation(), 1000);
+var automationLoop = setInterval(() => building_automation(), 200);

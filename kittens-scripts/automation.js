@@ -47,11 +47,7 @@ let craft_ratio_if_full = (base_res_id, craft_res_id, ratio, log = true) => {
     let percentage = get_res_percentage(base_res_id)
     if (percentage >= 1) {
         if (log || debug) console.log(`[${base_res_id}] Full > Craft [${(ratio * 100).toString()}]% of [${craft_res_id}]`)
-
-        var all_craftable = game.workshop.getCraftAllCount(craft_res_id)
-        var ratio_count = Math.floor(all_craftable * ratio)
-
-        game.craft(craft_res_id, ratio_count)
+        craft_ratio(craft_res_id, ratio)
     }
 }
 
@@ -59,7 +55,6 @@ let craft_amount_if_full = (base_res_id, craft_res_id, amount, log = true) => {
     let percentage = get_res_percentage(base_res_id)
     if (percentage >= 1) {
         if (log || debug) console.log(`[${base_res_id}] Full > Craft [${amount.toString()}] [${craft_res_id}]`)
-
         game.craft(craft_res_id, amount)
     }
 }
@@ -102,7 +97,7 @@ let auto_pray = (ratio, log = true) => {
 var MIN_FUR = 20000
 var MIN_PARCHMENT = 4000
 var MIN_MANUSCRIPT = 2000
-var MIN_COMPENDIUM = 2000
+var MIN_COMPENDIUM = 100000
 
 var main_automation = () => {
     //* PRIMARY RESOURCES
@@ -111,13 +106,12 @@ var main_automation = () => {
     if (flags.minerals) craft_ratio_if_full('minerals', 'slab', 0.1, false)
     if (flags.iron)     craft_ratio_if_full('iron', 'plate', 0.1, false)
     if (flags.coal)     craft_ratio_if_full('coal', 'steel', 0.8, false)
-    if (flags.oil)      craft_amount_if_full('oil', 'kerosene', 1, false)
-    if (flags.uranium)  craft_amount_if_full('uranium', 'thorium', 1, false)
+    if (flags.oil)      craft_amount_if_full('oil', 'kerosene', 1)
+    if (flags.uranium)  craft_amount_if_full('uranium', 'thorium', 1)
         
     //* ELUDIUM
     let alloy = game.resPool.get('alloy').value
-    let unobtainium = game.resPool.get('unobtainium').value
-    if (flags.unobtainium && alloy > 2500 && unobtainium > 1001)
+    if (flags.unobtainium && is_res_full('unobtainium') && alloy > 2500)
         game.craft('eludium', 1)
 
     //* SCIENCE
@@ -138,7 +132,7 @@ var main_automation = () => {
         craft_amount_if_full('science', 'compedium', 5, false)
 
     else if (flags.blueprint && manuscript > MIN_MANUSCRIPT && compedium >= MIN_COMPENDIUM)
-        craft_amount_if_full('science', 'blueprint', 1, false)
+        craft_amount_if_full('science', 'blueprint', 5, false)
 
     //* OTHER
     if (flags.praise) auto_pray(0.99)
