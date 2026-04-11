@@ -61,6 +61,18 @@ var is_res_full = (resource_id) => {
     return get_res_percentage(resource_id) >= 1
 }
 
+var cheat_catpower = (ratio) => {
+    let resource = game.resPool.get('manpower')
+    let max = resource.maxValue
+    let target = max * ratio
+
+    let current = resource.value
+    let delta = target - current
+
+    game.resPool.addResEvent('manpower', delta)
+}
+
+let SPIDER_TRADE_RATIO = 0.1
 
 //$ ---- CUSTOM KEYBOARD SHORTCUTS ----
 window.addEventListener('keydown', function(e) {
@@ -68,36 +80,37 @@ window.addEventListener('keydown', function(e) {
         e.preventDefault(); 
         
         console.log('Cheat Shortcut triggered');
-        game.resPool.addResEvent('wood', 10000000)
-        game.resPool.addResEvent('minerals', 10000000)
-        game.resPool.addResEvent('iron', 10000000)
-        game.resPool.addResEvent('science', 10000000)
+        game.resPool.addResEvent('wood', 1000000000)
+        game.resPool.addResEvent('minerals', 1000000000)
+        game.resPool.addResEvent('iron', 1000000000)
+        game.resPool.addResEvent('science', 1000000000)
     }
     if (e.ctrlKey && e.code === 'KeyC') {
         e.preventDefault(); 
         
         console.log('Culture Shortcut triggered');
-        game.resPool.addResEvent('culture', 10000000)
+        game.resPool.addResEvent('culture', 1000000000)
     }
     if (e.shiftKey && e.code === 'KeyC') {
         e.preventDefault(); 
         
         console.log('Catpower Shortcut triggered');
-        let resource = game.resPool.get('manpower')
-        let max = resource.maxValue
-        let target = max * 0.8
-
-        let current = resource.value
-        let delta = target - current
-
-        game.resPool.addResEvent('manpower', delta)
+        cheat_catpower(0.8)
     }
     if (e.shiftKey && e.code === 'KeyX') {
         game.craftAll('steel')
     }
     if (e.shiftKey && e.code === 'KeyZ') {
         console.log('Trading with Zebras');
-        let zebras = game.diplomacy.races.find(x => x.name == 'zebras')
+        let zebras = game.diplomacy.get('zebras')
         game.diplomacy.tradeMultiple(zebras, 2)
+    }
+    if (e.shiftKey && e.code === 'KeyD') {
+        console.log('Trading with Spiders');
+        cheat_catpower(0.8)
+        
+        let spiders = game.diplomacy.get('spiders')
+        let trades = game.diplomacy.getMaxTradeAmt(spiders) * SPIDER_TRADE_RATIO
+        game.diplomacy.tradeMultiple(spiders, trades)
     }
 }, false);

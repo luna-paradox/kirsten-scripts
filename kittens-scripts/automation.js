@@ -106,8 +106,8 @@ var main_automation = () => {
     if (flags.minerals) craft_ratio_if_full('minerals', 'slab', 0.1, false)
     if (flags.iron)     craft_ratio_if_full('iron', 'plate', 0.1, false)
     if (flags.coal)     craft_ratio_if_full('coal', 'steel', 0.8, false)
-    if (flags.oil)      craft_amount_if_full('oil', 'kerosene', 1)
-    if (flags.uranium)  craft_amount_if_full('uranium', 'thorium', 1)
+    if (flags.oil)      craft_amount_if_full('oil', 'kerosene', 10, false)
+    if (flags.uranium)  craft_amount_if_full('uranium', 'thorium', 10, false)
         
     //* ELUDIUM
     let alloy = game.resPool.get('alloy').value
