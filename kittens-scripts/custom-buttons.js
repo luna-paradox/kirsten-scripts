@@ -53,8 +53,25 @@ var create_culture_button = () => {
     return new_btn
 }
 
+var create_unicorn_button = () => {
+    
+    var new_btn = document.createElement('button')
+    new_btn.textContent = '🦄'
+    new_btn.id = 'custom-unicorn'
+    $(new_btn).css('margin-left', '5px')
+
+    new_btn.onclick = () => {
+        buy_next_unicorn_building()
+    }
+    
+    return new_btn
+}
+
 var init_custom_buttons = () => {
     var container = $('.right-tab-header')
+    
+    const btn_unicorn = create_unicorn_button()
+    container.append(btn_unicorn)
 
     const btn_catpower = create_catpower_button()
     container.append(btn_catpower)
