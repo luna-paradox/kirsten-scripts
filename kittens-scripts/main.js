@@ -73,6 +73,8 @@ var cheat_catpower = (ratio) => {
 }
 
 let SPIDER_TRADE_RATIO = 0.1
+let GRIFFINS_TRADE_RATIO = 1.0
+
 
 //$ ---- CUSTOM KEYBOARD SHORTCUTS ----
 window.addEventListener('keydown', function(e) {
@@ -84,33 +86,55 @@ window.addEventListener('keydown', function(e) {
         game.resPool.addResEvent('minerals', 1000000000)
         game.resPool.addResEvent('iron', 1000000000)
         game.resPool.addResEvent('science', 1000000000)
+        return
     }
     if (e.ctrlKey && e.code === 'KeyC') {
         e.preventDefault(); 
         
         console.log('Culture Shortcut triggered');
         game.resPool.addResEvent('culture', 1000000000)
+        return
     }
     if (e.shiftKey && e.code === 'KeyC') {
         e.preventDefault(); 
         
         console.log('Catpower Shortcut triggered');
         cheat_catpower(0.8)
+        return
     }
     if (e.shiftKey && e.code === 'KeyX') {
         game.craftAll('steel')
+        return
     }
+
+    //$ TRADING
     if (e.shiftKey && e.code === 'KeyZ') {
         console.log('Trading with Zebras');
+        
         let zebras = game.diplomacy.get('zebras')
         game.diplomacy.tradeMultiple(zebras, 2)
+        return
     }
     if (e.shiftKey && e.code === 'KeyD') {
         console.log('Trading with Spiders');
-        cheat_catpower(0.8)
+        cheat_catpower(0.9)
         
         let spiders = game.diplomacy.get('spiders')
         let trades = game.diplomacy.getMaxTradeAmt(spiders) * SPIDER_TRADE_RATIO
         game.diplomacy.tradeMultiple(spiders, trades)
+        return
+    }
+    if (e.shiftKey && e.code === 'KeyF') {
+        console.log('Trading with Griffins');
+        cheat_catpower(0.9)
+        
+        let griffins = game.diplomacy.get('griffins')
+        let trades = game.diplomacy.getMaxTradeAmt(griffins) * GRIFFINS_TRADE_RATIO
+        game.diplomacy.tradeMultiple(griffins, trades)
+        return
+    }
+
+    if (e.shiftKey && e.code === 'KeyG') {
+        game.resPool.addResEvent('gold', 1000000000)
     }
 }, false);
