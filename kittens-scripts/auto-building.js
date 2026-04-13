@@ -4,41 +4,48 @@ var AUTO_BUILDING_ON = 1
 
 //$ ---- DATA PERSISNTECE ----
 
-// Define what buildings will be auto-build, ordered by bought priority
-var building_flags = {
-    hut: 0,
-    logHouse: 0,
-    mansion: 0,
-
-    workshop: 1,
-    smelter: 1,
-    mine: 1,
-    lumberMill: 1,
-
-    library: 1,
-    academy: 1,
-    barn: 1,
-
-    tradepost: 0,
-    amphitheatre: 0,
-    chapel: 0,
-    temple: 0,
-
-    unicornPasture: 1,
-
-    field: 0,
-    pasture: 0,
-    aqueduct: 0,
-}
-
+var building_flags = {}
 
 var upgrade_auto_building_flag = (building_id, checked) => {
-    building_flags[building_id] = checked
+    console.log('UPGRADE BUILDING FLAGS')
+    //* UPDATE FLAG ON MEMORY
+    building_flags[building_id] = checked ? 1 : 0
+    
+    //* UPDATE COOKIE FROM MEMORY
+    set_cookie(COOKIE_KEY_AUTO_BUILDING_FLAGS, JSON.stringify(building_flags), 400)
 }
 
 var upgrade_auto_building_on = (new_state) => {
     AUTO_BUILDING_ON = new_state
+    
+    //* UPDATE COOKIE FROM MEMORY
+    set_cookie(COOKIE_KEY_AUTO_BUILDING_SWITCH, AUTO_BUILDING_ON, 400)
 }
+
+// Load cookie with all the Auto Building Flags into the flags on memory
+// If no cookie exists, is created with all values as 0
+var load_auto_building_settings_from_cookies = () => {
+    //* FLAGS
+    const c_auto_building_flags = get_cookie(COOKIE_KEY_AUTO_BUILDING_FLAGS)
+
+    if (c_auto_building_flags) {
+        building_flags = JSON.parse(c_auto_building_flags)
+    } else {
+        let initial_flags = {}
+        for (building of game.bld.buildingsData) {
+            if (!building.unlocked) return
+            initial_flags[building.name] = 0
+            building_flags[building.name] = 0
+        }
+
+        set_cookie(COOKIE_KEY_AUTO_BUILDING_FLAGS, JSON.stringify(initial_flags), 400)
+    }
+
+    //* SWITCH
+    const c_auto_building_switch = get_cookie(COOKIE_KEY_AUTO_BUILDING_SWITCH)
+    AUTO_BUILDING_ON = c_auto_building_switch
+}
+load_auto_building_settings_from_cookies()
 
 
 //$ ---- SERVICES ----

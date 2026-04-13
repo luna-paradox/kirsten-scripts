@@ -57,7 +57,7 @@ var init_auto_building_ui = () => {
 
     if (debug) console.log('Iinitializing Auto Building UI')
 
-    //* CREATE CHECKBOX FOR ALL BUTOONS
+    //* CREATE CHECKBOX FOR ALL BUTTONS
     init_auto_building_checkbox()
 
     //* CREATE MASTER CHECKBOX

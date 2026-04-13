@@ -8,6 +8,9 @@ var COOKIE_KEY_MID_MARKS = 'upgrade-mid-marks'
 var COOKIE_KEY_NON_IMPORTANT_MARKS = 'upgrade-non-important-marks'
 // Automation
 var COOKIE_KEY_AUTOMATION_FLAGS = 'automation-flags'
+// Auto Building
+var COOKIE_KEY_AUTO_BUILDING_FLAGS = 'auto-building-flags'
+var COOKIE_KEY_AUTO_BUILDING_SWITCH = 'auto-building-switch'
 
 var set_cookie = (name, value, days) => {
     var expires = '';
