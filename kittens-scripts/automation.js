@@ -1,6 +1,8 @@
 console.log('> Loading automation.js script')
 
-//$ ---- PERSISTENCE THROUGH COOKIE MANAGEMENT ----
+//$ ---- DATA PERSISNTECE ----
+// Automation
+var COOKIE_KEY_AUTOMATION_FLAGS = 'automation-flags'
 
 // Update cookie with all the Flags
 var update_flag_cookie = (key, is_checked) => {
@@ -33,7 +35,7 @@ var load_flags = () => {
 load_flags()
 
 
-//$ ---- AUTOMATION SCRIPT ----
+//$ ---- AUTOMATION MODULES ----
 
 let hunt_on_manpower_full = (fraction, log = true) => {
     let percentage = get_res_percentage('manpower')
@@ -94,12 +96,16 @@ let auto_pray = (ratio, log = true) => {
     }
 }
 
+//$ ---- CONFIGURATION ----
+//TODO Add this to the cookies, setting exporter and UI
 var MIN_FUR = 20000
 var MIN_PARCHMENT = 4000
 var MIN_MANUSCRIPT = 2000
 var MIN_COMPENDIUM = 100000
 
-var main_automation = () => {
+
+//$ ---- BOOTSTRAP ----
+var run_automation = () => {
     //* PRIMARY RESOURCES
     if (flags.catnip)   craft_ratio_if_full('catnip', 'wood', 0.25, false)
     if (flags.wood)     craft_ratio_if_full('wood', 'beam', 0.1, false)
@@ -141,6 +147,4 @@ var main_automation = () => {
 }
 
 // Basic Automation
-var automationLoop = setInterval(() => main_automation(), 1000);
-
-
+var automation_loop = setInterval(() => run_automation(), 1000);

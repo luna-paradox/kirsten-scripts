@@ -3,6 +3,9 @@ console.log('> Loading auto-building.js script')
 var AUTO_BUILDING_ON = 1
 
 //$ ---- DATA PERSISNTECE ----
+// Auto Building
+var COOKIE_KEY_AUTO_BUILDING_FLAGS = 'auto-building-flags'
+var COOKIE_KEY_AUTO_BUILDING_SWITCH = 'auto-building-switch'
 
 var building_flags = {}
 
@@ -48,8 +51,7 @@ var load_auto_building_settings_from_cookies = () => {
 load_auto_building_settings_from_cookies()
 
 
-//$ ---- SERVICES ----
-
+//$ ---- AUTO BUILDING MODULES ----
 // Buy a Building if available
 var buy_if_available = (building_id) => {
     var button = game.bldTab?.children?.find(btn => btn?.opts?.building == building_id)
@@ -63,8 +65,7 @@ var buy_if_available = (building_id) => {
 }
 
 
-//$ ---- INITIALIZATION ----
-
+//$ ---- BOOTSTRAP ----
 // Automation for the Builder Auto-Buyer
 var building_automation = () => {
     if (!AUTO_BUILDING_ON) return

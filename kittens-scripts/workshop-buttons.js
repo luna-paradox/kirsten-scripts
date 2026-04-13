@@ -1,14 +1,17 @@
 console.log('> Loading workshop-buttons.js script')
 
-//$ ---- WORKSHOP BUTTONS ----
 // Checkmarks next to each Workshop Upgrade to organize them by importance
 // All selected marks are stored as cookies so they can be recovered after
 // after realoading, but it doesn't sync over browsers
 
-//* UPGRADE MARKS DATA MANAGEMENT
+//$ ---- DATA PERSISNTECE ----
 // Marks are stored as dictionaries {} with the index of the button on DOM as key
 // and a boolean as value indicating the state of the checkmark input
 // Those dictionaries are stored as cookies, one for each mark type
+
+var COOKIE_KEY_IMPORTANT_MARKS = 'upgrade-important-marks'
+var COOKIE_KEY_MID_MARKS = 'upgrade-mid-marks'
+var COOKIE_KEY_NON_IMPORTANT_MARKS = 'upgrade-non-important-marks'
 
 // Update data for Non-Important Marks
 var update_upgrade_non_important_marks_data = (idx, is_non_important) => {
@@ -57,7 +60,7 @@ var get_upgrade_marks_data = () => {
     };
 }
 
-// ---- INIT BUTTONS ----
+//$ ---- BOOTSTRAP ----
 // It needs to be initialized once at the begginging and never again
 // If ran twice in the same session it'll bug lmao
 var init_workshop_upgrade_marks = () => {
@@ -141,7 +144,6 @@ var init_workshop_upgrade_marks = () => {
     });
 }
 
-// ---- SUBSCRIBE INITIALIZATION ----
 var subscribe_workshop_buttons_ui = () => {
     var old_render = game.ui.render;
     game.ui.render = function() {

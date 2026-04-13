@@ -1,3 +1,4 @@
+console.log('> Loading auto-trade.js script')
 
 /** Attempt to do a number of trades with a race, stopping first if not possible
  * so it can be run every N seconds with a setInterval loop

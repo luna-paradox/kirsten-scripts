@@ -1,3 +1,5 @@
+console.log('> Loading unicorn-calculator.js script')
+
 // Disclaimer: Code partially written by AI using Unicorn Calculator source code
 // Unicorn Calculator: https://coderpatsy.bitbucket.io/kittens/unicorns.html
 

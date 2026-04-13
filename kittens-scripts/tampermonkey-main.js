@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Kittens Game - Workshop Buttons
 // @match        *://kittensgame.com/web/
-// @version      1.1
+// @version      1.2
 // @updateURL    https://cdn.jsdelivr.net/gh/luna-paradox/kirsten-scripts@main/kittens-scripts/tampermonkey-main.js
 // @downloadURL  https://cdn.jsdelivr.net/gh/luna-paradox/kirsten-scripts@main/kittens-scripts/tampermonkey-main.js
 // ==/UserScript==
@@ -16,11 +16,13 @@ function load_scripts() {
         'https://cdn.jsdelivr.net/gh/vl20100/KGProgressBars@0.0.1.d/dist/KGP.js',
         'https://cdn.jsdelivr.net/gh/luna-paradox/kirsten-scripts@main/kittens-scripts/main.js?v=' + Date.now(),
         'https://cdn.jsdelivr.net/gh/luna-paradox/kirsten-scripts@main/kittens-scripts/workshop-buttons.js?v=' + Date.now(),
-        'https://cdn.jsdelivr.net/gh/luna-paradox/kirsten-scripts@main/kittens-scripts/custom-buttons.js?v=' + Date.now(),
         'https://cdn.jsdelivr.net/gh/luna-paradox/kirsten-scripts@main/kittens-scripts/automation.js?v=' + Date.now(),
         'https://cdn.jsdelivr.net/gh/luna-paradox/kirsten-scripts@main/kittens-scripts/auto-building.js?v=' + Date.now(),
+        'https://cdn.jsdelivr.net/gh/luna-paradox/kirsten-scripts@main/kittens-scripts/unicorn-calculator.js?v=' + Date.now(),
+        'https://cdn.jsdelivr.net/gh/luna-paradox/kirsten-scripts@main/kittens-scripts/auto-trade.js?v=' + Date.now(),
         'https://cdn.jsdelivr.net/gh/luna-paradox/kirsten-scripts@main/kittens-scripts/automation-ui.js?v=' + Date.now(),
         'https://cdn.jsdelivr.net/gh/luna-paradox/kirsten-scripts@main/kittens-scripts/auto-building-ui.js?v=' + Date.now(),
+        'https://cdn.jsdelivr.net/gh/luna-paradox/kirsten-scripts@main/kittens-scripts/custom-buttons.js?v=' + Date.now(),
         'https://cdn.jsdelivr.net/gh/luna-paradox/kirsten-scripts@main/kittens-scripts/settings-manager.js?v=' + Date.now(),
     ]
 
@@ -28,11 +30,13 @@ function load_scripts() {
         'https://cdn.jsdelivr.net/gh/vl20100/KGProgressBars@0.0.1.d/dist/KGP.js',
         'https://kirsten.luna-paradox.dev/kittens-scripts/main.js?v=' + Date.now(),
         'https://kirsten.luna-paradox.dev/kittens-scripts/workshop-buttons.js?v=' + Date.now(),
-        'https://kirsten.luna-paradox.dev/kittens-scripts/custom-buttons.js?v=' + Date.now(),
         'https://kirsten.luna-paradox.dev/kittens-scripts/automation.js?v=' + Date.now(),
         'https://kirsten.luna-paradox.dev/kittens-scripts/auto-building.js?v=' + Date.now(),
+        'https://kirsten.luna-paradox.dev/kittens-scripts/unicorn-calculator.js?v=' + Date.now(),
+        'https://kirsten.luna-paradox.dev/kittens-scripts/auto-trade.js?v=' + Date.now(),
         'https://kirsten.luna-paradox.dev/kittens-scripts/automation-ui.js?v=' + Date.now(),
         'https://kirsten.luna-paradox.dev/kittens-scripts/auto-building-ui.js?v=' + Date.now(),
+        'https://kirsten.luna-paradox.dev/kittens-scripts/custom-buttons.js?v=' + Date.now(),
         'https://kirsten.luna-paradox.dev/kittens-scripts/settings-manager.js?v=' + Date.now(),
     ]
 
